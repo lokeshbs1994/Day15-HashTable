@@ -1,8 +1,7 @@
-/*@Purpose : Ability to find frequency of words in a large paragraph phrase “Paranoids are not
- * paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations”
- * - Use hashcode to find index of the words in the para
- * - Create LinkedList for each index and store the words and its frequency
- * - Use LinkedList to do the Hash Table Operation
+/*@Purpose : Remove avoidable word from the phrase
+ * “Paranoids are not paranoid because they are paranoid but because they keep putting themselves
+ * deliberately into paranoid avoidable situations”
+ * - Use LinkedList to do the Hash Table Operation like here the removal of word avoidable
  * - To do this create MyMapNode with Key Value Pair and create LinkedList of MyMapNode
  * @File : Data Structure Using Hash Table
  * @Author : Lokesh BS
@@ -57,6 +56,25 @@ public class HashTableImplementation<K, V> {
         } else {
             return myMapNode.getValue();
         }
+    }
+
+    // Remove "avoidable" from hashtable
+    public void remove(K word) {
+        Node currentNode = head;
+        Node previousNode = null;
+        while (currentNode != null && currentNode.getKey().equals(word)) {
+            head = currentNode.getNext();
+            return;
+        }
+        while (currentNode != null && !(currentNode.getKey().equals(word))) {
+            previousNode = currentNode;
+            currentNode = currentNode.getNext();
+        }
+        if (currentNode != null) {
+            previousNode.next = currentNode.next;
+        }
+        if (currentNode == null)
+            System.out.println("Word not found!");
 
     }
 
